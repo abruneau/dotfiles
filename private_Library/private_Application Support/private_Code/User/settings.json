@@ -1,0 +1,24 @@
+{
+    "terminal.external.osxExec": "iTerm.app",
+    "python.jediEnabled": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.largeFileOptimizations": false,
+    "window.zoomLevel": 0,
+    "explorer.confirmDelete": false,
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": true,
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
+    "workbench.iconTheme": "material-icon-theme",
+    "dart.openDevTools": "flutter",
+    "dart.debugExternalLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "editor.fontFamily": "FiraCode-Retina",
+    "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
+    "editor.formatOnSave": true
+}
