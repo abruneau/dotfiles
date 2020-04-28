@@ -2,6 +2,13 @@
 
 echo "Setting up your Mac..."
 
+if type xcode-select >&- && xpath=$(xcode-select --print-path) &&
+    test -d "${xpath}" && test -x "${xpath}"; then
+    echo "Command Line Tool already installed"
+else
+    xcode-select --install
+fi
+
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
