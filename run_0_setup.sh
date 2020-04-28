@@ -41,3 +41,4 @@ brew cask install visual-studio-code || true
 brew cask install firefox || true
 brew cask install karabiner-elements || true
 brew cask install rectangle || true
+brew cask install keepingyouawak || true
