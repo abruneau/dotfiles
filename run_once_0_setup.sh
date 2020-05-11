@@ -17,6 +17,8 @@ fi
 # Update Homebrew recipes
 brew update
 
+HOMEBREW_NO_AUTO_UPDATE=1
+
 brew tap homebrew/cask
 brew tap homebrew/cask-eid
 brew tap homebrew/cask-fonts
@@ -32,6 +34,7 @@ brew install zsh-autosuggestions || true
 brew install zsh-syntax-highlighting || true
 brew install telnet || true
 brew install romkatv/powerlevel10k/powerlevel10k || true
+brew install terminal-notifier || true
 
 brew cask install iterm2 || true
 brew cask install docker || true
