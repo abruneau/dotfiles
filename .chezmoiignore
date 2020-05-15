@@ -1,2 +1,6 @@
 install.sh
 README.md
+Brewfile
+.macos
+settings.json
+karabiner.json
