@@ -19,7 +19,7 @@ setutMac() {
 
     # Install all our dependencies with bundle (See Brewfile)
     brew tap homebrew/bundle
-    brew bundle --no-lock --no-upgrade
+    brew bundle --no-lock --no-upgrade --file $(chezmoi source-path)/Brewfile
 
     # Setup Iterm
     wget http://ethanschoonover.com/solarized/files/solarized.zip && unzip solarized.zip
