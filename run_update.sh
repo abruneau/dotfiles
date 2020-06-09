@@ -7,7 +7,7 @@ updateMac() {
         echo "Brew up to date"
     else
         echo "Updating Brewfile..."
-        brew bundle --no-lock --no-upgrade
+        brew bundle --no-lock --no-upgrade --file $(chezmoi source-path)/Brewfile
         sed -i.back "s/^BREWFILE=.*/BREWFILE=$(md5 -q $(chezmoi source-path)\/Brewfile)/" ~/.dotfile
     fi
 
