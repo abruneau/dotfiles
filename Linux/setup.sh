@@ -29,7 +29,7 @@ function setup() {
     echo "Seting up ZSH" 
     installZSH
 
-    ~/.dotfile
+    touch ~/.dotfile
 }
 
 function update() {

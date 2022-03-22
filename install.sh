@@ -42,7 +42,7 @@ git clone git@github.com:abruneau/dotfiles.git .dot
 
 cd .dot
 
-if [ -f "$DEV" = "true"]; then
+if [ "$DEV" = "true" ]; then
     git checkout dev
     git pull
 fi
