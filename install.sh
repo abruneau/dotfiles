@@ -38,7 +38,7 @@ elif [ "$OS" = "SUSE" ]; then
     sudo dnf install git-all -y
 fi
 
-git clone git@github.com:abruneau/dotfiles.git .dot
+git clone https://github.com/abruneau/dotfiles.git .dot
 
 cd .dot
 
