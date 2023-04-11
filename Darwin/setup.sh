@@ -25,6 +25,19 @@ setup() {
     wget http://ethanschoonover.com/solarized/files/solarized.zip && unzip solarized.zip
     open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors
     rm -rf solarized && rm solarized.zip
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    sed -i -e 's/ZSH_THEME=.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc
+    echo "# To customize prompt, run p10k configure or edit ~/.p10k.zsh." >> ~/.zshrc
+    echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc
+    ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
+
+    ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/ 
+
+    git clone https://github.com/blimmer/zsh-aws-vault.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins
+
+    # Setup .config
+
+    ln -s $(pwd)/Darwin/.config ~/.config
 
     # Font
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /Library/Fonts
