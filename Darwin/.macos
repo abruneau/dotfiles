@@ -130,3 +130,6 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+# Turn off spotlight 
+sudo mdutil -i off
