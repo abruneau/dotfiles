@@ -9,6 +9,10 @@ setup() {
         xcode-select --install
     fi
 
+    # Setup files
+    ln -s $(pwd)/Darwin/.config ~/.config
+    cp $(pwd)/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -34,10 +38,6 @@ setup() {
     ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/ 
 
     git clone https://github.com/blimmer/zsh-aws-vault.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins
-
-    # Setup .config
-
-    ln -s $(pwd)/Darwin/.config ~/.config
 
     # Font
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /Library/Fonts
