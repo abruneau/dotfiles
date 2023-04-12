@@ -96,7 +96,7 @@ update() {
         echo "Mac OS config up to date"
     else
         echo "Updating Mac OS config"
-        source .macos
+        source Darwin/.macos
         sed -i.back "s/^MACOS=.*/MACOS=$(md5 -q Darwin\/.macos)/" ~/.dotfile
     fi
 }
