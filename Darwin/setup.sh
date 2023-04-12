@@ -11,6 +11,7 @@ setup() {
     
     # Setup files
     ln -s $(pwd)/Darwin/.config ~/.config
+    ln -s $(pwd)/Darwin/zsh/.zshrc ~/.zshrc
     cp $(pwd)/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
     
     # Check for Homebrew and install if we don't have it
@@ -45,9 +46,6 @@ setup() {
     open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors
     rm -rf solarized && rm solarized.zip
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    sed -i -e 's/ZSH_THEME=.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc
-    echo "# To customize prompt, run p10k configure or edit ~/.p10k.zsh." >> ~/.zshrc
-    echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc
     ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
     
     ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/
