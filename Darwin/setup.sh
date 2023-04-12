@@ -11,11 +11,11 @@ setup() {
 
     # Setup files
     ln -s $(pwd)/Darwin/.config ~/.config
-    cp $(pwd)/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+    cp $(pwd)/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
 
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
     # Update Homebrew recipes
@@ -23,7 +23,7 @@ setup() {
 
     # Install all our dependencies with bundle (See Brewfile)
     brew tap homebrew/bundle
-    brew bundle --no-lock --no-upgrade --file osx/Brewfile
+    brew bundle --no-lock --no-upgrade --file Darwin/Brewfile
 
     # Setup Iterm
     wget http://ethanschoonover.com/solarized/files/solarized.zip && unzip solarized.zip
@@ -46,16 +46,16 @@ setup() {
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /Library/Fonts
 
     # Setup VSCode
-    source osx/.vscode
+    source Darwin/.vscode
 
     # Store MD5s
-    echo "BREWFILE=$(md5 -q osx/Brewfile)" >>~/.dotfile
-    echo "VSCODE=$(md5 -q osx/.vscode)" >>~/.dotfile
-    echo "MACOS=$(md5 -q osx/.macos)" >>~/.dotfile
+    echo "BREWFILE=$(md5 -q Darwin/Brewfile)" >>~/.dotfile
+    echo "VSCODE=$(md5 -q Darwin/.vscode)" >>~/.dotfile
+    echo "MACOS=$(md5 -q Darwin/.macos)" >>~/.dotfile
 
     # Set macOS preferences
     # We will run this last because this will reload the shell
-    source osx/.macos
+    source Darwin/.macos
 }
 
 update() {
