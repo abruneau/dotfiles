@@ -27,3 +27,5 @@ if [ ! $(uname -s) = 'Darwin' ]; then
         alias open='xdg-open'
     fi
 fi
+
+alias tf="terraform"

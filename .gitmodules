@@ -1,0 +1,3 @@
+[submodule "Darwin/.config/sketchybar/plugins/Dynamic-Island-Sketchybar"]
+	path = Darwin/.config/sketchybar/plugins/Dynamic-Island-Sketchybar
+	url = https://github.com/crissNb/Dynamic-Island-Sketchybar.git

@@ -6,6 +6,10 @@ export APPLE=􀣺
 export PREFERENCES=􀺽
 export ACTIVITY=􀒓
 export LOCK=􀒳
+export LOGOUT=
+export POWER=
+export REBOOT=
+export SLEEP=⏾
 export BELL=􀋚
 export BELL_DOT=􀝗
 
@@ -13,13 +17,16 @@ export BATTERY=
 export CPU=
 export DISK=
 export MEMORY=﬙
+export NETWORK=
+export NETWORK_DOWN=
+export NETWORK_UP=
 
 # Git Icons
 export GIT_ISSUE=􀍷
 export GIT_DISCUSSION=􀒤
 export GIT_PULL_REQUEST=􀙡
 export GIT_COMMIT=􀡚
-export GIT_INDICATOR=􀂓
+export GIT_INDICATOR=
 
 # Spotify Icons
 export SPOTIFY_BACK=􀊎

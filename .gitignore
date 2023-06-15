@@ -1,1 +1,7 @@
 test/
+Darwin/.config/coc
+Darwin/.config/containers
+Darwin/.config/ddtool
+Darwin/.config/gcloud
+Darwin/.config/op
+Darwin/.config/nvim/plugged
