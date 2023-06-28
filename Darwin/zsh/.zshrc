@@ -117,9 +117,9 @@ fi
 # Example aliases
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 # export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 DEFAULT_USER=$(whoami)
 
@@ -149,35 +149,35 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 #export PATH="$HOME/.pyenv/shims:$PATH"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. $(brew --prefix)/opt/asdf/libexec/asdf.sh
 
 source /Users/$(whoami)/.config/broot/launcher/bash/br
 
 # google-cloud-sdk brew caveat
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # BEGIN ANSIBLE MANAGED BLOCK
 # Add homebrew binaries to the path.
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH?}"
+export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:${PATH?}"
 
 # Force certain more-secure behaviours from homebrew
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_CASK_OPTS=--require-sha
-export HOMEBREW_DIR=/opt/homebrew
-export HOMEBREW_BIN=/opt/homebrew/bin
+export HOMEBREW_DIR=$(brew --prefix)
+export HOMEBREW_BIN=$(brew --prefix)/bin
 
 # Load python shims
 # eval "$(pyenv init -)"
 
 # Load ruby shims
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # Prefer GNU binaries to Macintosh binaries.
-export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
 
 # Add AWS CLI to PATH
-export PATH="/opt/homebrew/opt/awscli@1/bin:$PATH"
+export PATH="$(brew --prefix)/opt/awscli@1/bin:$PATH"
 
 # Add datadog devtools binaries to the PATH
 export PATH="${HOME?}/dd/devtools/bin:${PATH?}"
