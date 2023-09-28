@@ -37,7 +37,7 @@ defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Hide MenuBar
-defaults write NSGlobalDomain _HIHideMenuBar -bool false
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #

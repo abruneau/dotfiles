@@ -10,7 +10,9 @@ setup() {
     fi
     
     # Setup files
+    rm -rf ~/.config
     ln -s $(pwd)/Darwin/.config ~/.config
+    rm -rf ~/.zshrc
     ln -s $(pwd)/Darwin/zsh/.zshrc ~/.zshrc
     cp $(pwd)/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
     
@@ -50,7 +52,7 @@ setup() {
     
     ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/
     
-    git clone https://github.com/blimmer/zsh-aws-vault.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins
+    git clone https://github.com/blimmer/zsh-aws-vault.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-aws-vault
     
     # Font
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /Library/Fonts
@@ -66,6 +68,8 @@ setup() {
     echo "VSCODE=$(md5 -q Darwin/.vscode)" >>~/.dotfile
     echo "MACOS=$(md5 -q Darwin/.macos)" >>~/.dotfile
     
+    source $(pwd)/Darwin/asdf.sh
+
     # Set macOS preferences
     # We will run this last because this will reload the shell
     source Darwin/.macos

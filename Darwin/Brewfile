@@ -5,6 +5,7 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/cask'
 tap 'koekeishiya/formulae'
 
+brew 'asdf'
 brew 'awscli'
 brew 'azure-cli'
 brew 'blueutil'
