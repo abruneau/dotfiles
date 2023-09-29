@@ -383,7 +383,7 @@
                         ]
                     },
                     {
-                        "description": "caps_lock to HYPER (SHIFT+COMMAND+OPTION+CONTROL) or ESCAPE (If Alone)",
+                        "description": "caps_lock to HYPER (SHIFT+COMMAND+OPTION+CONTROL) or caps_lock (If Alone)",
                         "manipulators": [
                             {
                                 "from": {
@@ -402,7 +402,7 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "escape"
+                                        "key_code": "caps_lock"
                                     }
                                 ],
                                 "type": "basic"
@@ -629,7 +629,7 @@
                     "treat_as_built_in_keyboard": false
                 },
                 {
-                    "disable_built_in_keyboard_if_exists": true,
+                    "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
                     "identifiers": {
                         "is_keyboard": true,
@@ -699,6 +699,20 @@
                         "is_pointing_device": true,
                         "product_id": 45088,
                         "vendor_id": 1133
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": true,
+                        "product_id": 617,
+                        "vendor_id": 76
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": false,
