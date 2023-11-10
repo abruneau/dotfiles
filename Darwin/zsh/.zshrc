@@ -157,54 +157,64 @@ source /Users/$(whoami)/.config/broot/launcher/bash/br
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-# BEGIN ANSIBLE MANAGED BLOCK
-# Add homebrew binaries to the path.
-export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:${PATH?}"
+# # BEGIN ANSIBLE MANAGED BLOCK
+# # Add homebrew binaries to the path.
+# export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH?}"
 
-# Force certain more-secure behaviours from homebrew
-export HOMEBREW_NO_INSECURE_REDIRECT=1
-export HOMEBREW_CASK_OPTS=--require-sha
-export HOMEBREW_DIR=$(brew --prefix)
-export HOMEBREW_BIN=$(brew --prefix)/bin
+# # Force certain more-secure behaviours from homebrew
+# export HOMEBREW_NO_INSECURE_REDIRECT=1
+# export HOMEBREW_CASK_OPTS=--require-sha
+# export HOMEBREW_DIR=/opt/homebrew
+# export HOMEBREW_BIN=/opt/homebrew/bin
 
-# Load python shims
+# # Load python shims
 # eval "$(pyenv init -)"
 
-# Load ruby shims
+# # Load ruby shims
 # eval "$(rbenv init -)"
 
-# Prefer GNU binaries to Macintosh binaries.
-export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
+# # Prefer GNU binaries to Macintosh binaries.
+# export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
 
-# Add AWS CLI to PATH
-export PATH="$(brew --prefix)/opt/awscli@1/bin:$PATH"
+# # Add AWS CLI to PATH
+# export PATH="/opt/homebrew/opt/awscli@1/bin:$PATH"
 
-# Add datadog devtools binaries to the PATH
-export PATH="${HOME?}/dd/devtools/bin:${PATH?}"
+# # Add datadog devtools binaries to the PATH
+# export PATH="${HOME?}/dd/devtools/bin:${PATH?}"
 
-# Point GOPATH to our go sources
-export GOPATH="${HOME?}/go"
+# # Point GOPATH to our go sources
+# export GOPATH="${HOME?}/go"
 
-# Add binaries that are go install-ed to PATH
-export PATH="${GOPATH?}/bin:${PATH?}"
+# # Add binaries that are go install-ed to PATH
+# export PATH="${GOPATH?}/bin:${PATH?}"
 
-# Tell the devenv vm to mount $GOPATH/src rather than just dd-go
-export MOUNT_ALL_GO_SRC=1
+# # Point DATADOG_ROOT to ~/dd symlink
+# export DATADOG_ROOT="${HOME?}/dd"
 
-# Helm switch from storing objects in kubernetes configmaps to
-# secrets by default, but we still use the old default.
-export HELM_DRIVER=configmap
+# # Tell the devenv vm to mount $GOPATH/src rather than just dd-go
+# export MOUNT_ALL_GO_SRC=1
 
-# Go 1.16+ sets GO111MODULE to off by default with the intention to
-# remove it in Go 1.18, which breaks projects using the dep tool.
-# https://blog.golang.org/go116-module-changes
-export GO111MODULE=auto
-export GOPRIVATE=github.com/DataDog
-export GOPROXY=binaries.ddbuild.io,https://proxy.golang.org,direct
-export GONOSUMDB=github.com/DataDog,go.ddbuild.io
+# # store key in the login keychain instead of aws-vault managing a hidden keychain
+# export AWS_VAULT_KEYCHAIN_NAME=login
 
-# Configure Go to pull go.ddbuild.io packages.
-export GOPROXY="binaries.ddbuild.io,proxy.golang.org,direct"
-export GONOSUMDB="github.com/DataDog,go.ddbuild.io"
-# END ANSIBLE MANAGED BLOCK
+# # tweak session times so you don't have to re-enter passwords every 5min
+# export AWS_SESSION_TTL=24h
+# export AWS_ASSUME_ROLE_TTL=1h
+
+# # Helm switch from storing objects in kubernetes configmaps to
+# # secrets by default, but we still use the old default.
+# export HELM_DRIVER=configmap
+
+# # Go 1.16+ sets GO111MODULE to off by default with the intention to
+# # remove it in Go 1.18, which breaks projects using the dep tool.
+# # https://blog.golang.org/go116-module-changes
+# export GO111MODULE=auto
+# export GOPRIVATE=github.com/DataDog
+# export GOPROXY=binaries.ddbuild.io,https://proxy.golang.org,direct
+# export GONOSUMDB=github.com/DataDog,go.ddbuild.io
+
+# # Configure Go to pull go.ddbuild.io packages.
+# export GOPROXY="binaries.ddbuild.io,proxy.golang.org,direct"
+# export GONOSUMDB="github.com/DataDog,go.ddbuild.io"
+# # END ANSIBLE MANAGED BLOCK
 . ~/.asdf/plugins/java/set-java-home.zsh

@@ -5,7 +5,7 @@ source "$HOME/.config/sketchybar/colors.sh"
 
 network_down=(
 	y_offset=-7
-	label.font="$FONT:Heavy:10"
+	label.font="$FONT:Bold:10"
 	label.color="$TEXT"
 	icon="$NETWORK_DOWN"
 	icon.font="$NERD_FONT:Bold:16.0"
@@ -17,7 +17,7 @@ network_down=(
 network_up=(
 	background.padding_right=-70
 	y_offset=7
-	label.font="$FONT:Heavy:10"
+	label.font="$FONT:Bold:10.0"
 	label.color="$TEXT"
 	icon="$NETWORK_UP"
 	icon.font="$NERD_FONT:Bold:16.0"

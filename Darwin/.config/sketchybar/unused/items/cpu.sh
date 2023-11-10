@@ -10,7 +10,7 @@ sketchybar --add item        cpu.top right                    \
                              y_offset=6                       \
                                                               \
            --add item        cpu.percent right                \
-           --set cpu.percent label.font="$FONT:Heavy:12"      \
+           --set cpu.percent label.font="$FONT:Bold:12"      \
                              label=CPU%                       \
                              label.color="$TEXT"              \
                              y_offset=-4                      \

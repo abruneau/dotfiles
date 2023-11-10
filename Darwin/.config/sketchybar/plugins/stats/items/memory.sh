@@ -4,7 +4,7 @@ source "$HOME/.config/sketchybar/colors.sh"
 
 memory=(
 	background.padding_left=0
-	label.font="$FONT:Heavy:12"
+	label.font="$FONT:Bold:12"
 	label.color="$TEXT"
 	icon="$MEMORY"
 	icon.font="$FONT:Bold:16.0"

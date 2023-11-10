@@ -33,7 +33,7 @@ sketchybar --add       event           spotify_change $SPOTIFY_EVENT        \
                                        background.padding_left=0            \
                                        background.padding_right=0           \
                                        width=0                              \
-                                       label.font="$FONT:Heavy:14.0"        \
+                                       label.font="$FONT:Bold:14.0"        \
                                        y_offset=40                          \
                                                                             \
            --add       item            spotify.artist popup.spotify.anchor  \

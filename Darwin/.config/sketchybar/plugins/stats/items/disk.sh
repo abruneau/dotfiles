@@ -4,7 +4,7 @@ source "$HOME/.config/sketchybar/colors.sh"
 
 disk=(
 	background.padding_left=0
-	label.font="$FONT:Heavy:12"
+	label.font="$FONT:Bold:12"
 	label.color="$TEXT"
 	icon="$DISK"
 	icon.color="$MAROON"
