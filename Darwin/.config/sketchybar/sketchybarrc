@@ -81,7 +81,8 @@ source "$PLUGIN_DIR/lock/item.sh"
 
 # Left
 source "$PLUGIN_DIR/apple/item.sh"
-# source "$PLUGIN_DIR/spaces/item.sh"
+source "$PLUGIN_DIR/spaces/item.sh"
+# source "$PLUGIN_DIR/yabai/item.sh"
 source "$PLUGIN_DIR/skhd/item.sh"
 source "$PLUGIN_DIR/front-app/item.sh"
 

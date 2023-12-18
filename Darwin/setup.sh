@@ -62,6 +62,9 @@ setup() {
     
     # Setup VSCode
     source Darwin/.vscode
+
+    # Install NeoVim
+    nvim --headless +q
     
     # Store MD5s
     echo "BREWFILE=$(md5 -q Darwin/Brewfile)" >>~/.dotfile

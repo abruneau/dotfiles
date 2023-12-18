@@ -131,7 +131,7 @@ export P_DYNAMIC_ISLAND_PADDINGS=3 # All paddings use this value (icon, label, b
 #
 ## Fonts
 #
-export FONT="FiraCode Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+export FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 export NERD_FONT="FiraCode Nerd Font"
 
 export PADDINGS=3
