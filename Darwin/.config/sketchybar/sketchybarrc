@@ -5,17 +5,12 @@ source "$HOME/.config/sketchybar/icons.sh"      # Loads all defined icons
 source "$HOME/.config/sketchybar/userconfig.sh" # Loads all defined variables
 
 export PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugins are stored
-# export DYNAMIC_ISLAND_DIR="$PLUGIN_DIR/Dynamic-Island-Sketchybar"
-# Setting up and starting the helper process
-source "$HOME/.config/sketchybar/helper/helper.sh"
-# source "$DYNAMIC_ISLAND_DIR/config.sh" # Loads Dynamic-Island config
-# source "$PLUGIN_DIR/dynamic-island/helper.sh"
 
-# run helper program
-# ISLANDHELPER=git.crissnb.islandhelper
-# killall islandhelper
-# cd $DYNAMIC_ISLAND_DIR/helper && make
-# $DYNAMIC_ISLAND_DIR/helper/islandhelper $ISLANDHELPER &
+# Setting up and starting the helper process
+HELPER=git.felix.helper
+killall helper
+(cd $CONFIG_DIR/helper && make)
+$CONFIG_DIR/helper/helper $HELPER >/dev/null 2>&1 &
 
 
 # Unload the macOS on screen indicator overlay for volume change
@@ -77,12 +72,19 @@ sketchybar --bar "${bar_config[@]}" \
 	"${background_defaults[@]}" \
 	"${popup_defaults[@]}"
 
+bar=(
+    # the bar doesn't need to be shown
+    height=0
+    # to allow for position calculation from top of display
+    topmost=on
+)
+
 source "$PLUGIN_DIR/lock/item.sh"
 
 # Left
 source "$PLUGIN_DIR/apple/item.sh"
 source "$PLUGIN_DIR/spaces/item.sh"
-# source "$PLUGIN_DIR/yabai/item.sh"
+source "$PLUGIN_DIR/yabai/item.sh"
 source "$PLUGIN_DIR/skhd/item.sh"
 source "$PLUGIN_DIR/front-app/item.sh"
 
@@ -95,6 +97,7 @@ source "$PLUGIN_DIR/control-center/item.sh"
 source "$PLUGIN_DIR/stats/item.sh"
 
 # Center
+source "$PLUGIN_DIR/central-date/item.sh"
 # source "$ITEM_DIR/spotify.sh"
 # source "$PLUGIN_DIR/Dynamic-Island-Sketchybar/item.sh"
 

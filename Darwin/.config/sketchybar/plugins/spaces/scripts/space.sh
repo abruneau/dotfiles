@@ -11,15 +11,27 @@ update() {
                          background.border_color=$COLOR
 }
 
-mouse_clicked() {
-  yabai -m space --focus $SID 2>/dev/null
+set_space_label() {
+  sketchybar --set $NAME icon="$@"
+}
 
-  # if [ "$BUTTON" = "right" ]; then
-  #   yabai -m space --destroy $SID
-  #   sketchybar --trigger windows_on_spaces --trigger space_change
-  # else
-  #   yabai -m space --focus $SID 2>/dev/null
-  # fi
+mouse_clicked() {
+  if [ "$BUTTON" = "right" ]; then
+    yabai -m space --destroy $SID
+  else
+    if [ "$MODIFIER" = "shift" ]; then
+      SPACE_LABEL="$(osascript -e "return (text returned of (display dialog \"Give a name to space $NAME:\" default answer \"\" with icon note buttons {\"Cancel\", \"Continue\"} default button \"Continue\"))")"
+      if [ $? -eq 0 ]; then
+        if [ "$SPACE_LABEL" = "" ]; then
+          set_space_label "${NAME:6}"
+        else
+          set_space_label "${NAME:6} ($SPACE_LABEL)"
+        fi
+      fi
+    else
+      yabai -m space --focus $SID 2>/dev/null
+    fi
+  fi
 }
 
 case "$SENDER" in
