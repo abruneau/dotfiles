@@ -47,10 +47,9 @@ setup() {
     wget http://ethanschoonover.com/solarized/files/solarized.zip && unzip solarized.zip
     open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors
     rm -rf solarized && rm solarized.zip
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
     
     ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/
+    ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
     
     git clone https://github.com/blimmer/zsh-aws-vault.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-aws-vault
     
@@ -80,6 +79,10 @@ setup() {
 
 update() {
     echo "Updating your Mac..."
+
+    git pull
+
+    git submodule update --remote
     
     if cat ~/.dotfile | grep -q $(md5 -q Darwin/Brewfile); then
         echo "Brew up to date"
