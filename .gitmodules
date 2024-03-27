@@ -4,3 +4,12 @@
 [submodule "Darwin/.config/nvim"]
 	path = Darwin/.config/nvim
 	url = https://github.com/AstroNvim/AstroNvim
+[submodule "shared/zsh/custom/plugins/jq"]
+	path = shared/zsh/custom/plugins/jq
+	url = https://github.com/reegnz/jq-zsh-plugin.git
+[submodule "shared/zsh/custom/plugins/zsh-aws-vault"]
+	path = shared/zsh/custom/plugins/zsh-aws-vault
+	url = https://github.com/blimmer/zsh-aws-vault.git
+[submodule "shared/zsh/custom/themes/powerlevel10k"]
+	path = shared/zsh/custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
