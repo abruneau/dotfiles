@@ -33,5 +33,7 @@ function setup() {
 }
 
 function update() {
-    echo "Not yet implemented"
+    git pull
+
+    git submodule update --remote
 }
