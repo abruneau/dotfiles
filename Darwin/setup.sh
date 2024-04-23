@@ -40,13 +40,8 @@ setup() {
     # Setup Iterm
     wget http://ethanschoonover.com/solarized/files/solarized.zip && unzip solarized.zip
     open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors
-    rm -rf solarized && rm solarized.zip
-    
-    ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/
-    ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
-    
-    git clone https://github.com/blimmer/zsh-aws-vault.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-aws-vault
-    
+    rm -rf solarized && rm solarized.zip    
+        
     # Font
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /Library/Fonts
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /Library/Fonts
@@ -59,6 +54,10 @@ setup() {
     rm -rf ~/.zshrc
     ln -s $(pwd)/Darwin/zsh/.zshrc ~/.zshrc
     cp $(pwd)/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+    rm ~/.p10k.zsh
+    ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
+    rm -rf ~/.oh-my-zsh/custom/*
+    ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/
     
     # Setup VSCode
     source Darwin/.vscode
