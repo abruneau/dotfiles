@@ -38,9 +38,9 @@ elif [ "$OS" = "SUSE" ]; then
     sudo dnf install git-all -y
 fi
 
-git clone --recurse-submodules https://github.com/abruneau/dotfiles.git .dot
+git clone --recurse-submodules https://github.com/abruneau/dotfiles.git .dotfiles
 
-cd .dot
+cd .dotfiles
 
 if [ "$DEV" = "true" ]; then
     git checkout dev

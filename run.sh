@@ -9,7 +9,7 @@ else
     echo "No setup file find for ${os} system"
 fi
 
-if [ -f ~/.dotfile ]; then
+if [ -f ~/.dot ]; then
     echo "Updating system"
 
     update

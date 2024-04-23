@@ -136,3 +136,9 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 
 # Turn off spotlight 
 sudo mdutil -i off
+
+###############################################################################
+# Icons                                                                       #
+###############################################################################
+
+defaults write com.oliverpeate.Bluesnooze hideIcon -bool true && killall Bluesnooze

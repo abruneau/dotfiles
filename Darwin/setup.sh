@@ -9,12 +9,6 @@ setup() {
         xcode-select --install
     fi
     
-    # Setup files
-    rm -rf ~/.config
-    ln -s $(pwd)/Darwin/.config ~/.config
-    rm -rf ~/.zshrc
-    ln -s $(pwd)/Darwin/zsh/.zshrc ~/.zshrc
-    cp $(pwd)/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
     
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
@@ -58,6 +52,13 @@ setup() {
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /Library/Fonts
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /Library/Fonts
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /Library/Fonts
+
+    # Setup files
+    rm -rf ~/.config
+    ln -s $(pwd)/Darwin/.config ~/.config
+    rm -rf ~/.zshrc
+    ln -s $(pwd)/Darwin/zsh/.zshrc ~/.zshrc
+    cp $(pwd)/Darwin/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
     
     # Setup VSCode
     source Darwin/.vscode
@@ -66,9 +67,9 @@ setup() {
     nvim --headless +q
     
     # Store MD5s
-    echo "BREWFILE=$(md5 -q Darwin/Brewfile)" >>~/.dotfile
-    echo "VSCODE=$(md5 -q Darwin/.vscode)" >>~/.dotfile
-    echo "MACOS=$(md5 -q Darwin/.macos)" >>~/.dotfile
+    echo "BREWFILE=$(md5 -q Darwin/Brewfile)" >>~/.dot
+    echo "VSCODE=$(md5 -q Darwin/.vscode)" >>~/.dot
+    echo "MACOS=$(md5 -q Darwin/.macos)" >>~/.dot
     
     source $(pwd)/Darwin/asdf.sh
 
@@ -84,27 +85,27 @@ update() {
 
     git submodule update --remote
     
-    if cat ~/.dotfile | grep -q $(md5 -q Darwin/Brewfile); then
+    if cat ~/.dot | grep -q $(md5 -q Darwin/Brewfile); then
         echo "Brew up to date"
     else
         echo "Updating Brewfile..."
         brew bundle --no-lock --no-upgrade --file Darwin/Brewfile
-        sed -i.back "s/^BREWFILE=.*/BREWFILE=$(md5 -q Darwin\/Brewfile)/" ~/.dotfile
+        sed -i.back "s/^BREWFILE=.*/BREWFILE=$(md5 -q Darwin\/Brewfile)/" ~/.dot
     fi
     
-    if cat ~/.dotfile | grep -q $(md5 -q Darwin/.vscode); then
+    if cat ~/.dot | grep -q $(md5 -q Darwin/.vscode); then
         echo "VSCode up to date"
     else
         echo "Updating VSCode pluggins ..."
         source .vscode
-        sed -i.back "s/^VSCODE=.*/VSCODE=$(md5 -q Darwin\/.vscode)/" ~/.dotfile
+        sed -i.back "s/^VSCODE=.*/VSCODE=$(md5 -q Darwin\/.vscode)/" ~/.dot
     fi
     
-    if cat ~/.dotfile | grep -q $(md5 -q Darwin\/.macos); then
+    if cat ~/.dot | grep -q $(md5 -q Darwin\/.macos); then
         echo "Mac OS config up to date"
     else
         echo "Updating Mac OS config"
         source Darwin/.macos
-        sed -i.back "s/^MACOS=.*/MACOS=$(md5 -q Darwin\/.macos)/" ~/.dotfile
+        sed -i.back "s/^MACOS=.*/MACOS=$(md5 -q Darwin\/.macos)/" ~/.dot
     fi
 }
