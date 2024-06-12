@@ -1,6 +1,3 @@
-[submodule "Darwin/.config/nvim"]
-	path = Darwin/.config/nvim
-	url = https://github.com/AstroNvim/AstroNvim
 [submodule "shared/zsh/custom/plugins/jq"]
 	path = shared/zsh/custom/plugins/jq
 	url = https://github.com/reegnz/jq-zsh-plugin.git

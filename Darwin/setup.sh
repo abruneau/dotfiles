@@ -62,8 +62,13 @@ setup() {
     # Setup VSCode
     source Darwin/.vscode
 
-    # Install NeoVim
-    nvim --headless +q
+    # Install Astrovim
+    rm -rf Darwin/.config/nvim
+    rm -rf Darwin/.local/share/nvim
+    rm -rf Darwin/.local/state/nvim
+    rm -rf Darwin/.cache/nvim
+    git clone --depth 1 https://github.com/AstroNvim/template Darwin/.config/nvim
+    rm -rf Darwin/.config/nvim/.git
     
     # Store MD5s
     echo "BREWFILE=$(md5 -q Darwin/Brewfile)" >>~/.dot
