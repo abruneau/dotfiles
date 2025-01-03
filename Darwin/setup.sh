@@ -7,6 +7,17 @@ setup() {
         echo "Command Line Tool already installed"
     else
         xcode-select --install
+
+        echo -n "Installing Command Line Tools"
+        until
+            xcode-select --print-path &
+            >/dev/null
+        do
+            sleep 5
+            echo -n "."
+        done
+        echo ""
+        echo "Command Line Tools installation completed"
     fi
 
     # Check for Homebrew and install if we don't have it
@@ -26,7 +37,7 @@ setup() {
         fi
         (
             echo
-            echo 'eval "\$(${HOMEBREW_PREFIX}/bin/brew shellenv)"'
+            echo "eval \"\$(${HOMEBREW_PREFIX}/bin/brew shellenv)\""
         ) >>${HOME}/.zprofile
         eval "\$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
     fi
@@ -85,14 +96,6 @@ update() {
         echo "Updating Brewfile..."
         brew bundle --no-lock --no-upgrade --file Darwin/Brewfile
         sed -i.back "s/^BREWFILE=.*/BREWFILE=$(md5 -q Darwin\/Brewfile)/" ~/.dot
-    fi
-
-    if cat ~/.dot | grep -q $(md5 -q Darwin/.vscode); then
-        echo "VSCode up to date"
-    else
-        echo "Updating VSCode pluggins ..."
-        source .vscode
-        sed -i.back "s/^VSCODE=.*/VSCODE=$(md5 -q Darwin\/.vscode)/" ~/.dot
     fi
 
     if cat ~/.dot | grep -q $(md5 -q Darwin\/.macos); then
