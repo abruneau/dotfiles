@@ -31,7 +31,7 @@ setup() {
             echo
             echo "eval \"\$(${HOMEBREW_PREFIX}/bin/brew shellenv)\""
         ) >>${HOME}/.zprofile
-        eval "\$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
+        eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
     fi
 
     # Update Homebrew recipes
