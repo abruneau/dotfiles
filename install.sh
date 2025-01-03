@@ -19,30 +19,35 @@ elif [ -f /etc/SuSE-release ]; then
     OS="SUSE"
 fi
 
-# installing command line tool to have git cmd
-if [ "$(uname)" == "Darwin" ]; then
-    # Check if Command Line Tools are installed
-    if
-        ! xcode-select -p &
-        >/dev/null
-    then
-        echo "Installing Command Line Tools..."
+# Function to check if Xcode Command Line Tools are installed
+check_xcode_cli_installed() {
+    xcode-select -p &>/dev/null
+    return $?
+}
+
+# Install Xcode Command Line Tools if not installed
+install_xcode_cli() {
+    echo "Checking for Xcode Command Line Tools..."
+    if check_xcode_cli_installed; then
+        echo "Xcode Command Line Tools are already installed."
+    else
+        echo "Xcode Command Line Tools not found. Starting installation..."
         xcode-select --install
 
-        # Wait until the Command Line Tools are installed
-        until
-            xcode-select -p &
-            >/dev/null
-        do
+        # Wait for the installation to complete
+        echo "Waiting for Xcode Command Line Tools to finish installing..."
+        until check_xcode_cli_installed; do
             sleep 5
             echo -n "."
         done
-        echo ""
-        echo "Command Line Tools installation completed"
-    else
-        echo "Command Line Tools already installed"
-    fi
 
+        echo "Xcode Command Line Tools installation completed."
+    fi
+}
+
+# installing command line tool to have git cmd
+if [ "$(uname)" == "Darwin" ]; then
+    install_xcode_cli
 elif [ "$OS" = "RedHat" ]; then
     sudo yum install git -y
 
