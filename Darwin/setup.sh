@@ -1,6 +1,8 @@
 #!/bin/bash
 
 setup() {
+    # Initiate sudo to ensure permission
+    sudo -v
 
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
