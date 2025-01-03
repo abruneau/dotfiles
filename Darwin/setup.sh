@@ -3,21 +3,19 @@
 setup() {
     echo "Setting up your Mac..."
     if type xcode-select >&- && xpath=$(xcode-select --print-path) &&
-    test -d "${xpath}" && test -x "${xpath}"; then
+        test -d "${xpath}" && test -x "${xpath}"; then
         echo "Command Line Tool already installed"
     else
         xcode-select --install
     fi
-    
-    
+
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        
+
         UNAME_MACHINE="$(/usr/bin/uname -m)"
-        
-        if [[ "${UNAME_MACHINE}" == "arm64" ]]
-        then
+
+        if [[ "${UNAME_MACHINE}" == "arm64" ]]; then
             # On ARM macOS, this script installs to /opt/homebrew only
             HOMEBREW_PREFIX="/opt/homebrew"
             HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
@@ -26,22 +24,25 @@ setup() {
             HOMEBREW_PREFIX="/usr/local"
             HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
         fi
-        (echo; echo 'eval "\$(${HOMEBREW_PREFIX}/bin/brew shellenv)"') >> ${HOME}/.zprofile
+        (
+            echo
+            echo 'eval "\$(${HOMEBREW_PREFIX}/bin/brew shellenv)"'
+        ) >>${HOME}/.zprofile
         eval "\$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
     fi
-    
+
     # Update Homebrew recipes
     brew update
-    
+
     # Install all our dependencies with bundle (See Brewfile)
     brew tap homebrew/bundle
     brew bundle --no-lock --no-upgrade --file Darwin/Brewfile
-    
+
     # Setup Iterm
     wget http://ethanschoonover.com/solarized/files/solarized.zip && unzip solarized.zip
     open solarized/iterm2-colors-solarized/Solarized\ Dark.itermcolors
-    rm -rf solarized && rm solarized.zip    
-        
+    rm -rf solarized && rm solarized.zip
+
     # Font
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -P /Library/Fonts
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -P /Library/Fonts
@@ -58,24 +59,13 @@ setup() {
     ln -s $(pwd)/shared/zsh/.p10k.zsh ~/.p10k.zsh
     rm -rf ~/.oh-my-zsh/custom/*
     ln -s $(pwd)/shared/zsh/custom/* ~/.oh-my-zsh/custom/
-    
-    # Setup VSCode
-    source Darwin/.vscode
 
-    # Install Astrovim
-    rm -rf Darwin/.config/nvim
-    rm -rf Darwin/.local/share/nvim
-    rm -rf Darwin/.local/state/nvim
-    rm -rf Darwin/.cache/nvim
-    git clone --depth 1 https://github.com/AstroNvim/template Darwin/.config/nvim
-    rm -rf Darwin/.config/nvim/.git
-    
     # Store MD5s
     echo "BREWFILE=$(md5 -q Darwin/Brewfile)" >>~/.dot
-    echo "VSCODE=$(md5 -q Darwin/.vscode)" >>~/.dot
     echo "MACOS=$(md5 -q Darwin/.macos)" >>~/.dot
-    
+
     source $(pwd)/Darwin/asdf.sh
+    source $(pwd)/Darwin/.config/sketchybar/helpers/install.sh
 
     # Set macOS preferences
     # We will run this last because this will reload the shell
@@ -88,7 +78,7 @@ update() {
     git pull
 
     git submodule update --remote
-    
+
     if cat ~/.dot | grep -q $(md5 -q Darwin/Brewfile); then
         echo "Brew up to date"
     else
@@ -96,7 +86,7 @@ update() {
         brew bundle --no-lock --no-upgrade --file Darwin/Brewfile
         sed -i.back "s/^BREWFILE=.*/BREWFILE=$(md5 -q Darwin\/Brewfile)/" ~/.dot
     fi
-    
+
     if cat ~/.dot | grep -q $(md5 -q Darwin/.vscode); then
         echo "VSCode up to date"
     else
@@ -104,7 +94,7 @@ update() {
         source .vscode
         sed -i.back "s/^VSCODE=.*/VSCODE=$(md5 -q Darwin\/.vscode)/" ~/.dot
     fi
-    
+
     if cat ~/.dot | grep -q $(md5 -q Darwin\/.macos); then
         echo "Mac OS config up to date"
     else

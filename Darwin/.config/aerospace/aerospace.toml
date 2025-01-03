@@ -1,0 +1,219 @@
+# Place a copy of this config to ~/.aerospace.toml
+# After that, you can edit ~/.aerospace.toml to your liking
+
+# It's not necessary to copy all keys to your config.
+# If the key is missing in your config, "default-config.toml" will serve as a fallback
+
+# You can use it to add commands that run after login to macOS user session.
+# 'start-at-login' needs to be 'true' for 'after-login-command' to work
+# Available commands: https://nikitabobko.github.io/AeroSpace/commands
+after-login-command = []
+
+# You can use it to add commands that run after AeroSpace startup.
+# 'after-startup-command' is run after 'after-login-command'
+# Available commands : https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = []
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = false
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# The 'accordion-padding' specifies the size of accordion padding
+# You can set 0 to disable the padding feature
+accordion-padding = 40
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'accordion'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
+automatically-unhide-macos-hidden-apps = true
+
+# Possible values: (qwerty|dvorak)
+# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+key-mapping.preset = 'qwerty'
+
+# Mouse follows focus when focused monitor changes
+# Drop it from your config, if you don't like this behavior
+# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+on-focused-monitor-changed = ['move-mouse window-lazy-center']
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+# Possible values:
+# - Constant:     gaps.outer.top = 8
+# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#                 In this example, 24 is a default value when there is no match.
+#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = [{ monitor."built-in" = 15 }, 50]
+outer.right = 10
+
+
+# All possible keys:
+# - Letters.        a, b, c, ..., z
+# - Numbers.        0, 1, 2, ..., 9
+# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+# - F-keys.         f1, f2, ..., f20
+# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
+#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
+# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+#                   keypadMinus, keypadMultiply, keypadPlus
+# - Arrows.         left, down, up, right
+# All possible modifiers: cmd, alt, ctrl, shift
+
+[mode.main.binding]
+ctrl-alt-a = 'layout h_accordion'
+ctrl-alt-d = 'layout tiles horizontal vertical'
+
+ctrl-shift-alt-cmd-h = 'focus left'
+ctrl-shift-alt-cmd-j = 'focus down'
+ctrl-shift-alt-cmd-k = 'focus up'
+ctrl-shift-alt-cmd-l = 'focus right'
+
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+alt-cmd-h = 'join-with left'
+alt-cmd-j = 'join-with down'
+alt-cmd-k = 'join-with up'
+alt-cmd-l = 'join-with right'
+
+
+ctrl-shift-alt-cmd-1 = 'workspace 1_web'
+ctrl-shift-alt-cmd-2 = 'workspace 2_notes'
+ctrl-shift-alt-cmd-3 = 'workspace 3_mail'
+ctrl-shift-alt-cmd-4 = 'workspace 4_social'
+ctrl-shift-alt-cmd-5 = 'workspace 5_code'
+ctrl-shift-alt-cmd-6 = 'workspace 6_calendar'
+ctrl-shift-alt-cmd-7 = 'workspace 7_media'
+
+
+alt-shift-1 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 1_web && sketchybar --trigger space_windows_change'
+alt-shift-2 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 2_notes && sketchybar --trigger space_windows_change'
+alt-shift-3 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 3_mail && sketchybar --trigger space_windows_change'
+alt-shift-4 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 4_social && sketchybar --trigger space_windows_change'
+alt-shift-5 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 5_code && sketchybar --trigger space_windows_change'
+alt-shift-6 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 6_calendar && sketchybar --trigger space_windows_change'
+alt-shift-7 = 'exec-and-forget aerospace move-node-to-workspace --focus-follows-window 7_media && sketchybar --trigger space_windows_change'
+
+ctrl-shift-alt-cmd-x = 'workspace-back-and-forth'
+ctrl-shift-alt-cmd-space = 'layout floating tiling'
+ctrl-shift-alt-cmd-f = 'fullscreen --no-outer-gaps'
+# alt-shift-f = 'macos-native-fullscreen' 
+
+ctrl-alt-cmd-r = 'reload-config'
+# ctrl-alt-shift-r = 'exec-and-forget  sketchybar --reload'
+
+# programm shortcuts
+# cmd-enter = 'exec-and-forget kitty --single-instance -d ~'
+# cmd-alt-space = 'exec-and-forget open -a Finder.app'
+
+# Disable annoying and useless "hide application" shortcut
+cmd-h = [] # Disable "hide application"
+
+
+[workspace-to-monitor-force-assignment]
+1_web = ['main', 'built-in']
+2_notes = ['main', 'built-in']
+3_mail = ['main', 'built-in']
+4_social = ['built-in', 'built-in']
+5_code = ['main', 'built-in']
+6_calendar = ['built-in', 'built-in']
+7_media = ['main', 'built-in']
+
+
+# floating rules
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+# programm workspace rules
+## web
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = ['move-node-to-workspace 1_web']
+
+## notes
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['move-node-to-workspace 2_notes']
+
+## media
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = ['move-node-to-workspace 7_media']
+
+[[on-window-detected]]
+if.app-id = 'tv.jellyfin.player'
+run = ['move-node-to-workspace 7_media']
+
+## mail
+[[on-window-detected]]
+if.app-id = 'org.mozilla.betterbird'
+run = ['move-node-to-workspace 3_mail']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = ['move-node-to-workspace 3_mail']
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.fmgjjmmmlfnkbppncabfkddbjimcfncm'
+run = ['move-node-to-workspace 3_mail']
+
+
+## Cal
+[[on-window-detected]]
+if.window-title-regex-substring = 'com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep'
+run = ['move-node-to-workspace 6_calendar']
+
+
+## social
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace 4_social']
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = ['move-node-to-workspace 4_social']
+
+[[on-window-detected]]
+if.app-id = 'im.beeper'
+run = ['move-node-to-workspace 4_social']
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = ['move-node-to-workspace 4_social']
+
+# code
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = ['move-node-to-workspace 5_code']
+
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+run = ['move-node-to-workspace 5_code']
