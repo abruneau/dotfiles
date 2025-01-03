@@ -54,6 +54,9 @@ setup() {
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -P /Library/Fonts
     wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P /Library/Fonts
 
+    # Install oh my zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
     # Setup files
     rm -rf ~/.config
     ln -s $(pwd)/Darwin/.config ~/.config
@@ -75,6 +78,12 @@ setup() {
     # Set macOS preferences
     # We will run this last because this will reload the shell
     source Darwin/.macos
+
+    # start necessary services
+    brew services start sketchybar
+    open -a hyperkey
+    open -a aerospace
+    open -a raycast
 }
 
 update() {
