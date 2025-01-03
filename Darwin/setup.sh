@@ -1,16 +1,18 @@
 #!/bin/sh
 
 setup() {
-    echo "Setting up your Mac..."
-    if type xcode-select >&- && xpath=$(xcode-select --print-path) &&
-        test -d "${xpath}" && test -x "${xpath}"; then
-        echo "Command Line Tool already installed"
-    else
+
+    # Check if Command Line Tools are installed
+    if
+        ! xcode-select -p &
+        >/dev/null
+    then
+        echo "Installing Command Line Tools..."
         xcode-select --install
 
-        echo -n "Installing Command Line Tools"
+        # Wait until the Command Line Tools are installed
         until
-            xcode-select --print-path &
+            xcode-select -p &
             >/dev/null
         do
             sleep 5
@@ -18,6 +20,8 @@ setup() {
         done
         echo ""
         echo "Command Line Tools installation completed"
+    else
+        echo "Command Line Tools already installed"
     fi
 
     # Check for Homebrew and install if we don't have it
