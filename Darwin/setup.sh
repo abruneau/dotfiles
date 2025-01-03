@@ -1,32 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 setup() {
 
-    # Check if Command Line Tools are installed
-    if
-        ! xcode-select -p &
-        >/dev/null
-    then
-        echo "Installing Command Line Tools..."
-        xcode-select --install
-
-        # Wait until the Command Line Tools are installed
-        until
-            xcode-select -p &
-            >/dev/null
-        do
-            sleep 5
-            echo -n "."
-        done
-        echo ""
-        echo "Command Line Tools installation completed"
-    else
-        echo "Command Line Tools already installed"
-    fi
-
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo -n "Installing Homebrew"
         until
             brew --version &
