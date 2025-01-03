@@ -21,11 +21,26 @@ fi
 
 # installing command line tool to have git cmd
 if [ "$(uname)" == "Darwin" ]; then
-    if type xcode-select >&- && xpath=$(xcode-select --print-path) &&
-        test -d "${xpath}" && test -x "${xpath}"; then
-        echo "Command Line Tool already installed"
-    else
+    # Check if Command Line Tools are installed
+    if
+        ! xcode-select -p &
+        >/dev/null
+    then
+        echo "Installing Command Line Tools..."
         xcode-select --install
+
+        # Wait until the Command Line Tools are installed
+        until
+            xcode-select -p &
+            >/dev/null
+        do
+            sleep 5
+            echo -n "."
+        done
+        echo ""
+        echo "Command Line Tools installation completed"
+    else
+        echo "Command Line Tools already installed"
     fi
 
 elif [ "$OS" = "RedHat" ]; then
