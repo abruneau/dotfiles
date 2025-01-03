@@ -23,6 +23,16 @@ setup() {
     # Check for Homebrew and install if we don't have it
     if test ! $(which brew); then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo -n "Installing Homebrew"
+        until
+            brew --version &
+            >/dev/null
+        do
+            sleep 5
+            echo -n "."
+        done
+        echo ""
+        echo "Homebrew installation completed"
 
         UNAME_MACHINE="$(/usr/bin/uname -m)"
 
